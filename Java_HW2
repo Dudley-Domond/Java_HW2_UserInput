@@ -1,0 +1,74 @@
+import java.util.*;
+
+class Java_HW2{
+
+    //Fibonnaci 
+    static int fibonnaci(int n){
+        if(n <= 1){
+            return n;
+        }
+
+        // iterate through sequence starting at the beginning
+        int first = 0;
+        int sec = 1;
+
+        while(n > 1){
+            // get next num in sequence, move sequence up
+            int sum = first + sec;
+            first = sec;
+            sec = sum;
+            n--;
+        }
+
+        return sec;
+    }
+
+    //palindrome
+    static boolean palindrome(String s){
+        int i = 0;
+        int j = s.length() - 1;
+
+        while(i < j){
+            if(s.charAt(i) != s.charAt(j)){
+                return false;
+            }
+
+            i++;
+            j--;
+        }
+
+        return true;
+    }
+
+    static boolean armstrong(String num){
+
+        int numDigits = num.length();
+
+        int sum = 0;
+        for(char digit: num.toCharArray()){
+            sum += Math.pow((double) (digit - '0'), numDigits);
+        }
+
+        return sum == Integer.parseInt(num);
+    }
+
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        
+     
+        System.out.print("Enter number to find Fibonacci number: ");
+        int num = scan.nextInt();
+        System.out.println("The Fibonnacci number of " + num + " is: " + fibonnaci(num));
+
+        System.out.print("Enter string to determine if palindrome: ");
+        String str = scan.next();
+        System.out.println(str + " is " + (palindrome(str) ? "" : "not ") + "a palindrome");
+
+
+        System.out.print("Enter number to determine if Armstrong number: ");
+        String num2 = scan.next();
+        System.out.println(num2 + " is " + (armstrong(num2) ? "" : "not ") + "an Armstrong number");
+
+        scan.close();
+    }
+}
